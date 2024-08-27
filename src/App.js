@@ -1,10 +1,10 @@
+import { RouterProvider } from "react-router-dom";
+import root from "./router/root";
 
 
 function App() {
   return (
-    <div className="text-4xl font-extrabold m-2 p-3 bg-green-500">
-      Hello 월드!
-    </div>
+    <RouterProvider router={root} />
   );
 }
 
