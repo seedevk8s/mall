@@ -1,7 +1,14 @@
+import React from 'react';    //React를 불러옵니다.
+import { Link } from 'react-router-dom';
 
 function AboutPage(props) {   //AboutPage는 함수형 컴포넌트로, props라는 인자를 받습니다. 
   return (                    //현재 코드에서는 props를 사용하고 있지 않지만, 이는 컴포넌트에 전달되는 속성을 처리할 수 있는 방법을 제공함
     <div className={'text-3xl'}>  
+
+      <div>
+        <Link to={'/about'}>About</Link>
+      </div>
+
       <h1>About Page</h1>
     </div>
   );
