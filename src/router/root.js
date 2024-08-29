@@ -6,6 +6,7 @@ const Loading = <div className={'bg-red-700'}>Loading...</div>;
 const Main = lazy(() => import("../pages/MainPage"));   //lazy 함수를 사용해 MainPage와 AboutPage 컴포넌트를 비동기적으로 불러옴. 
 const About = lazy(() => import("../pages/AboutPage")); //이 컴포넌트들은 필요할 때만 로드되어 초기 로딩 시간을 단축시킴.
 const TodoIndex = lazy(() => import("../pages/todo/IndexPage"));
+const TodoList = lazy(() => import("../pages/todo/ListPage"));
 
 
 const root = createBrowserRouter([                  //createBrowserRouter 함수를 통해 라우터 구성을 설정
@@ -19,7 +20,13 @@ const root = createBrowserRouter([                  //createBrowserRouter 함수
     },
     {
         path: "todo",
-        element: <Suspense fallback={Loading}><TodoIndex/></Suspense>
+        element: <Suspense fallback={Loading}><TodoIndex/></Suspense>,
+        children: [
+            {
+                path: 'list', 
+                element: <Suspense fallback={Loading}><TodoList /></Suspense>
+            }
+        ]
     }
             //이 코드는 비동기적 페이지 로딩과 동적 라우팅을 구현하여 초기 로드 시 성능을 향상시키고, 사용자 경험을 개선합니다. 
 ]);         //Suspense와 lazy의 조합은 리소스를 효율적으로 사용하면서도, 사용자에게 느린 로드 타임이 발생할 경우 적절한 피드백을 제공할 수 있게 함
